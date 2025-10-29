@@ -1,0 +1,104 @@
+
+<div class="container mt-5">
+  <div class="card shadow rounded p-4">
+    <h2 class="mb-4 text-center text-primary">Resume Submission Form</h2>
+<!-- Success Alert -->
+<div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ successMessage }}
+  <button type="button" class="btn-close" aria-label="Close" (click)="successMessage = ''"></button>
+</div>
+
+<!-- Error Alert -->
+<div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{ errorMessage }}
+  <button type="button" class="btn-close" aria-label="Close" (click)="errorMessage = ''"></button>
+</div>
+
+    <form [formGroup]="resumeForm" (ngSubmit)="submitResume()" novalidate>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" class="form-control" formControlName="name" />
+          <div class="text-danger" *ngIf="resumeForm.get('name')?.invalid && resumeForm.get('name')?.touched">
+            Name is required.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-control" formControlName="email" />
+          <div class="text-danger" *ngIf="resumeForm.get('email')?.invalid && resumeForm.get('email')?.touched">
+            Enter a valid email.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="jobTitle" class="form-label">Job Title</label>
+          <input type="text" id="jobTitle" class="form-control" formControlName="jobTitle" />
+          <div class="text-danger" *ngIf="resumeForm.get('jobTitle')?.invalid && resumeForm.get('jobTitle')?.touched">
+            Job title is required.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="experience" class="form-label">Experience (years)</label>
+          <input type="number" id="experience" class="form-control" formControlName="experience" />
+          <div class="text-danger" *ngIf="resumeForm.get('experience')?.invalid && resumeForm.get('experience')?.touched">
+            Experience is required and must be 0 or more.
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <label for="skills" class="form-label">Skills</label>
+          <textarea id="skills" class="form-control" rows="3" formControlName="skills"></textarea>
+          <div class="text-danger" *ngIf="resumeForm.get('skills')?.invalid && resumeForm.get('skills')?.touched">
+            Skills are required.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="text" id="phone" class="form-control" formControlName="phone" />
+          <div class="text-danger" *ngIf="resumeForm.get('phone')?.invalid && resumeForm.get('phone')?.touched">
+            Enter a valid 10-digit phone number.
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="currentSalary" class="form-label">Current Salary</label>
+          <input type="number" id="currentSalary" class="form-control" formControlName="currentSalary" />
+        </div>
+
+        <div class="col-md-3">
+          <label for="expectedSalary" class="form-label">Expected Salary</label>
+          <input type="number" id="expectedSalary" class="form-control" formControlName="expectedSalary" />
+        </div>
+        <div class="col-md-6">
+          <label for="appliedPosition" class="form-label">Applied Position</label>
+          <input type="text" id="appliedPosition" class="form-control" formControlName="appliedPosition" />
+          <div class="text-danger" *ngIf="resumeForm.get('appliedPosition')?.invalid && resumeForm.get('appliedPosition')?.touched">
+            Applied position is required.
+          </div>
+        </div>
+ <div class="col-md-6">
+          <label for="nationality" class="form-label">Nationality</label>
+          <input type="text" id="nationality" class="form-control" formControlName="nationality" />
+          <div class="text-danger" *ngIf="resumeForm.get('nationality')?.invalid && resumeForm.get('nationality')?.touched">
+            Nationality is required.
+          </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+          <button 
+  type="submit" 
+  class="btn btn-primary w-30 btn-lg shadow-sm d-flex align-items-center justify-content-center gap-2" 
+  [disabled]="resumeForm.invalid"
+>
+  <i class="bi bi-send-fill"></i>
+  Submit Resume
+</button>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

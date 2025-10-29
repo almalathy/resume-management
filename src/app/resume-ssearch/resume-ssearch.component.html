@@ -1,0 +1,115 @@
+<div class="container mt-4">
+  <h3 class="mb-4 text-primary">Search Resumes</h3>
+  <form class="row g-3 align-items-center mb-5" (ngSubmit)="search()">
+  <div class="col-auto">
+    <input 
+      type="text" 
+      [(ngModel)]="searchQuery" 
+      name="searchQuery"
+      class="form-control form-control-sm" 
+      placeholder="Search by name, job, or experience"
+      style="width: 350px;"
+      required
+    >
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-primary btn-sm" type="submit">Search</button>
+  </div>
+</form>
+
+
+  <div *ngIf="results.length > 0">
+    <table class="table table-bordered table-striped mt-4">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Job Title</th>
+          <th>Experience</th>
+          <th>Skills</th>
+          <th>Phone</th>
+          <th>Current Salary</th>
+          <th>Expected Salary</th>
+          <th>Applied Position</th>
+          <th>Nationality</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resume of results">
+          <td>{{ resume.name }}</td>
+          <td>{{ resume.email }}</td>
+          <td>{{ resume.jobTitle }}</td>
+          <td>{{ resume.experience }} yrs</td>
+          <td>{{ resume.skills }}</td>
+          <td>{{ resume.phone }}</td>
+          <td>{{ resume.currentSalary }}</td>
+          <td>{{ resume.expectedSalary }}</td>
+          <td>{{ resume.appliedPosition }}</td>
+          <td>{{ resume.nationality }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2" (click)="editResume(resume)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteResume(resume.id)">Delete</button>
+            <!-- <button class="btn btn-success btn-sm ms-2" (click)="downloadResume(resume)">Download</button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="editMode" class="card mt-4 shadow-sm p-3">
+  <h5 class="text-warning mb-3">Edit Resume</h5>
+  
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label>Name</label>
+      <input type="text" class="form-control" [(ngModel)]="editableResume.name">
+    </div>
+    <div class="col-md-6">
+      <label>Email</label>
+      <input type="email" class="form-control" [(ngModel)]="editableResume.email">
+    </div>
+    <div class="col-md-6">
+      <label>Job Title</label>
+      <input type="text" class="form-control" [(ngModel)]="editableResume.jobTitle">
+    </div>
+    <div class="col-md-6">
+      <label>Experience</label>
+      <input type="number" class="form-control" [(ngModel)]="editableResume.experience">
+    </div>
+    <div class="col-md-6">
+      <label>Skills</label>
+      <input type="text" class="form-control" [(ngModel)]="editableResume.skills">
+    </div>
+    <div class="col-md-6">
+      <label>Phone</label>
+      <input type="text" class="form-control" [(ngModel)]="editableResume.phone">
+    </div>
+    <div class="col-md-6">
+      <label>Current Salary</label>
+      <input type="number" class="form-control" [(ngModel)]="editableResume.currentSalary">
+    </div>
+    <div class="col-md-6">
+      <label>Expected Salary</label>
+      <input type="number" class="form-control" [(ngModel)]="editableResume.expectedSalary">
+    </div>
+    <div class="col-md-6">
+      <label>Applied Position</label>
+      <input type="text" class="form-control" [(ngModel)]="editableResume.appliedPosition">
+    </div>
+    <div class="col-md-6">
+      <label>Nationality</label>
+      <input type="text" class="form-control" [(ngModel)]="editableResume.nationality">
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <button class="btn btn-success me-2" (click)="saveEdit()">Save Changes</button>
+    <button class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+  </div>
+</div>
+
+
+  <div *ngIf="results.length === 0 && searchDone" class="alert alert-info mt-3">
+    No resumes found.
+  </div>
+</div>

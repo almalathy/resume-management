@@ -1,0 +1,53 @@
+.resume-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f9f9ff;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(2, 6, 226, 0.62);
+
+  h2 {
+    margin-bottom: 1.5rem;
+    color: #076bcf;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+
+    label {
+      font-weight: 500;
+      display: block;
+      font-size:larger;
+      margin-bottom: 0.5rem;
+      color: #05509c;
+    }
+
+    .form-control {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: #003c7d;
+        outline: none;
+      }
+    }
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
